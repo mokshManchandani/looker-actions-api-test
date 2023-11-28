@@ -20,13 +20,6 @@ view: health_insurance_data {
   # measures for this dimension, but you can also add measures of many different aggregates.
   # Click on the type parameter to see all the options in the Quick Help panel on the right.
 
-  measure: total_age {
-    type: sum
-    sql: ${age} ;;  }
-  measure: average_age {
-    type: average
-    sql: ${age} ;;  }
-
   dimension: bmi {
     type: number
     sql: ${TABLE}.bmi ;;
@@ -83,5 +76,20 @@ view: health_insurance_data {
   }
   measure: count {
     type: count
+  }
+
+  measure: total_charges {
+    type: sum
+    sql: ${TABLE}.charges ;;
+  }
+
+  measure: total_age {
+    type: sum
+    sql: ${age} ;;
+  }
+
+  measure: average_age {
+    type: average
+    sql: ${age} ;;
   }
 }

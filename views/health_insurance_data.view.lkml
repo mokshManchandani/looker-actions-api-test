@@ -3,6 +3,11 @@ view: health_insurance_data {
   # The sql_table_name parameter indicates the underlying database table
   # to be used for all fields in this view.
   sql_table_name: `test_insurance_data.health-insurance-mini` ;;
+  # derived_table: {
+  #   sql: SELECT * FROM `test_insurance_data.health-insurance-mini` ;;
+  #   persist_for: "24 Hours"
+  #   publish_as_db_view: yes
+  # }
 
   # No primary key is defined for this view. In order to join this view in an Explore,
   # define primary_key: yes on a dimension that has no repeated values.
@@ -91,5 +96,15 @@ view: health_insurance_data {
   measure: average_age {
     type: average
     sql: ${age} ;;
+  }
+  measure: test_button {
+    type: string
+    sql: '' ;;
+    html:
+      {%- assign o = _filters["health_insurance_data.occupation"] | urlencode -%}
+      {%- assign ef = _filters["health_insurance_data.exercise_frequency"] | urlencode -%}
+      {%- assign loc = _filters["health_insurance_data.region"] | urlencode -%}
+      {%- assign cl = _filters["health_insurance_data.coverage_level"] | urlencode -%}
+      <a href="http://localhost:3001/generate_pdf?o={{ o }}&ef={{ ef }}&loc={{ loc }}&cl={{ cl }}" style="font-size:16px" target="_new">Download As PDF</a>;;
   }
 }

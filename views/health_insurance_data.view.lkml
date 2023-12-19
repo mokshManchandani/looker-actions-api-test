@@ -107,4 +107,14 @@ view: health_insurance_data {
       {%- assign cl = _filters["health_insurance_data.coverage_level"] | urlencode -%}
       <a href="http://localhost:3001/generate_pdf?o={{ o }}&ef={{ ef }}&loc={{ loc }}&cl={{ cl }}" style="font-size:16px" target="_new">Download As PDF</a>;;
   }
+  measure: dump_table {
+    type: string
+    sql: '' ;;
+    html:
+      {%- assign o = _filters["health_insurance_data.occupation"] | urlencode -%}
+      {%- assign ef = _filters["health_insurance_data.exercise_frequency"] | urlencode -%}
+      {%- assign loc = _filters["health_insurance_data.region"] | urlencode -%}
+      {%- assign cl = _filters["health_insurance_data.coverage_level"] | urlencode -%}
+      <a href="http://localhost:3001/dump_table_to_pdf" style="font-size:16px" target="_new">Dump Table</a>;;
+  }
 }
